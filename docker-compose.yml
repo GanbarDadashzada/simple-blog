@@ -1,0 +1,9 @@
+services:
+  web:
+    build: 
+      context: ./ 
+      dockerfile: dockerfile
+    ports:
+      - "8000:90"
+    volumes:
+      - ./db_files:/app/db_files
