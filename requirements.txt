@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+SQLAlchemy 
+PyJWT
+Passlib
+pydantic
+dotenv
+python-dotenv
