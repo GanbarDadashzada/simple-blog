@@ -2,6 +2,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 
+from app.models.user import User
+from app.models.blog import Blog
+from app.models.like import Like
+from app.models.comment import Comment
+
 DATABASE_DIR = "./db_files"
 DATABASE_PATH = f"{DATABASE_DIR}/blog.db"
 DATABASE_URL = f"sqlite:///{DATABASE_PATH}"
