@@ -8,3 +8,8 @@ class Registration(BaseModel):
     email: Optional[str]
     name: Optional[str]
     surname: Optional[str]
+
+
+class Authorization(BaseModel):
+
+    username: Optional[str]

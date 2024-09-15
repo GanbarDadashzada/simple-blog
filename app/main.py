@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
-from app.api.endoints import login
+from app.api.endoints import login, blog
 
 app=FastAPI()
 
-routers = [login.router]
+routers = [login.router, blog.router]
 
 app.add_middleware(
     CORSMiddleware,
