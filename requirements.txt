@@ -4,5 +4,7 @@ SQLAlchemy
 PyJWT
 Passlib
 pydantic
-dotenv
 python-dotenv
+itsdangerous
+python-jose
+python-multipart

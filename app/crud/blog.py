@@ -3,7 +3,6 @@ from fastapi import HTTPException
 from app.core.database import Session
 
 from app.utils.exception import CustomException
-from app.utils.helper import HelperFunctions
 
 from app.models.user import User
 from app.models.blog import Blog
