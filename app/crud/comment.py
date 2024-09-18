@@ -58,8 +58,7 @@ class CommentService:
 
     async def read_comments_of_blog(username: Authorization, comment_data: ReadCommentsRequest, db: Session):
 
-        comments = db.query(Comment).filter(Comment.id == comment_data.comment_id,
-                                            Comment.blog_id == comment_data.blog_id).offset(comment_data.skip).limit(comment_data.limit).all()
+        comments = db.query(Comment).filter(Comment.blog_id == comment_data.blog_id).offset(comment_data.skip).limit(comment_data.limit).all()
 
         response = []
 
@@ -73,8 +72,9 @@ class CommentService:
                 comment_id=comment.id,
                 comment_text=comment.comment_text,
                 user_name=user.name,
-                user_surname=user.surnamem,
+                user_surname=user.surname,
                 likes_count=len(comment.like_relation),
+                parent_id=comment.parent_comment,
                 date_added=comment.date
             )
             response.append(response_data)

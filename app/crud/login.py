@@ -13,7 +13,7 @@ from app.schemas.registration import Registration
 class LoginService:
 
 
-    def register(user_data: Registration, db: Session):
+    async def register(user_data: Registration, db: Session):
 
         user = db.query(User).filter(User.username == user_data.username).first()
         if user:
@@ -24,7 +24,7 @@ class LoginService:
         user_db = User(
             username = user_data.username,
             password = hashed_password,
-            email = user_data.email,
+            email_address = user_data.email,
             name = user_data.name,
             surname = user_data.surname
         )
@@ -34,7 +34,7 @@ class LoginService:
         return {"message": "User registered successfully"}
 
 
-    def login(data: OAuth2PasswordRequestForm, db: Session):
+    async def login(data: OAuth2PasswordRequestForm, db: Session):
         
         user = db.query(User).filter(User.username == data.username).first()
         if not user:

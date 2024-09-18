@@ -14,6 +14,6 @@ class Like(Base):
     comment_id = Column(Integer, ForeignKey("comments.id"))
     date = Column(DateTime, default=datetime.now(timezone.utc))
 
-    user_relation = relationship("User", back_populates="users.id")
-    blog_relation = relationship("Blog", back_populates="blogs.id")
-    comment_relation = relationship("Comment", back_populates="comments.id")
+    user_relation = relationship("User", back_populates="like_relation")
+    blog_relation = relationship("Blog", back_populates="like_relation")
+    comment_relation = relationship("Comment", back_populates="like_relation")
