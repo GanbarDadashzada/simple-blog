@@ -18,7 +18,7 @@ class LikeService:
 
         like_check = db.query(Like).filter(Like.blog_id == like_data.blog_id).first()
         if like_check:
-            raise CustomException(message="User already likes this blog")
+            raise CustomException("User already likes this blog")
         
         like = Like(
             is_dislike = like_data.is_dislike,
@@ -37,7 +37,7 @@ class LikeService:
 
         like_check = db.query(Like).filter(Like.blog_id == like_data.comment_id).first()
         if like_check:
-            raise CustomException(message="User already likes this blog")
+            raise CustomException("User already likes this comment")
         
         like = Like(
             is_dislike = False,

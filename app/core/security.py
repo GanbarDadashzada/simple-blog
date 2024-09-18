@@ -11,7 +11,7 @@ from app.models.user import User
 SECRET_KEY_FOR_TOKEN = "your_secret_key_here"
 TOKEN_ALGORITHM = "HS256"
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 

@@ -8,7 +8,7 @@ class Blog(Base):
     __tablename__ = "blogs"
 
     id = Column(Integer, primary_key = True)
-    content = Column(String(Text), nullable = True)
+    content = Column(Text, nullable = True)
     category = Column(String(255), nullable = True)
     is_draft = Column(Boolean, nullable = True)
     user_id = Column(Integer, ForeignKey("users.id"))

@@ -30,4 +30,5 @@ class ReadCommentResponse(BaseModel):
     user_name: Optional[str]
     user_surname: Optional[str]
     likes_count: Optional[int]
+    parent_id: Optional[int]
     date_added: Optional[datetime]

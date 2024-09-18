@@ -8,7 +8,7 @@ class Comment(Base):
     __tablename__ = "comments"
 
     id = Column(Integer, primary_key = True)
-    comment_text = Column(String(Text), nullable = True)
+    comment_text = Column(Text, nullable = True)
     blog_id = Column(Integer, ForeignKey("blogs.id"))
     user_id = Column(Integer, ForeignKey("users.id"))
     parent_comment = Column(Integer, nullable = True)
