@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
 from app.api.endoints import login, blog, comment, like
-
+from app.utils.exception import custom_exception, CustomException
 app=FastAPI()
 
 routers = [login.router, blog.router, like.router, comment.router]
@@ -17,6 +17,8 @@ app.add_middleware(
 
 for route in routers:
     app.include_router(route)
+
+app.add_exception_handler(CustomException, custom_exception)
 
 if __name__ == '__main__':
     import uvicorn
