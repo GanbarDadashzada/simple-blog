@@ -30,3 +30,8 @@ class ReadBlogs(BaseModel):
     like_count: Optional[int]
     dislike_count: Optional[int]
     date_added: Optional[datetime]
+    
+class GetBlogRequest(BaseModel):
+    
+    skip: Optional[int]
+    limit: Optional[int]

@@ -8,7 +8,7 @@ from app.models.user import User
 from app.models.blog import Blog
 
 from app.schemas.registration import Authorization
-from app.schemas.blog import CreateBlog, DeleteBlog, EditBlog, ReadBlogs
+from app.schemas.blog import CreateBlog, DeleteBlog, EditBlog, GetBlogRequest, ReadBlogs
 
 
 class BlogService:
@@ -77,7 +77,7 @@ class BlogService:
         if not blog:
             raise CustomException("Blog not found")
         
-        for key, value in blog_data.model_dump():
+        for key, value in blog_data.model_dump().items():
             if key != "blog_id" or value != None:
                 setattr(blog, key, value)
         
@@ -86,24 +86,25 @@ class BlogService:
         return {"message": "Blog updated successfully"}
     
 
-    async def get_blogs(username: Authorization, skip: int, limit: int, db: Session):
+    async def get_blogs(username: Authorization, data: GetBlogRequest, db: Session):
         """
         Retrieve a list of blog posts with pagination.
         :param skip: The number of items to skip.
         :param limit: The maximum number of items to return.
         :return: A list of blog posts.
         """
-        blogs = db.query(Blog).filter(Blog.is_draft == False).offset(skip).limit(limit).all()
+        blogs = db.query(Blog).filter(Blog.is_draft == False).offset(data.skip).limit(data.limit).all()
 
         response = []
 
         if not blogs:
             return response
 
-        like_counter = sum(1 for relation in blog.like_relation if not relation.is_dislike)
-        dislike_counter = sum(1 for relation in blog.like_relation if relation.is_dislike)
-
         for blog in blogs:
+            
+            like_counter = sum(1 for relation in blog.like_relation if not relation.is_dislike)
+            dislike_counter = sum(1 for relation in blog.like_relation if relation.is_dislike)
+            
             blog_by = db.query(User).filter(User.id == blog.user_id).first()
             response_data = ReadBlogs(
                 blog_id=blog.id,
@@ -113,7 +114,8 @@ class BlogService:
                 user_surname=blog_by.surname,
                 comment_count=len(blog.comment_relation),
                 like_count=like_counter,
-                dislike_count=dislike_counter
+                dislike_count=dislike_counter,
+                date_added=blog.date
             )
             response.append(response_data)
 

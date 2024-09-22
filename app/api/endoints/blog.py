@@ -6,7 +6,7 @@ from app.core.security import Authentication
 
 from app.crud.blog import BlogService
 
-from app.schemas.blog import CreateBlog, EditBlog, DeleteBlog
+from app.schemas.blog import CreateBlog, EditBlog, DeleteBlog, GetBlogRequest
 from app.schemas.registration import Authorization
 
 router = APIRouter()
@@ -23,6 +23,6 @@ async def delete_blog(username: Annotated[Authorization, Depends(Authentication.
 async def edit_blog(username: Annotated[Authorization, Depends(Authentication.active_username)], data: EditBlog, db: Session = Depends(get_session)):
     return await BlogService.edit_blog(username, data, db)
 
-@router.get("/get_blogs", tags=["Blog"])
-async def get_blogs(username: Annotated[Authorization, Depends(Authentication.active_username)], skip: int = Query(1, ge=1), limit: int = Query(10, gt=0), db: Session = Depends(get_session)):
-    return await BlogService.get_blogs(username, skip, limit, db)
+@router.post("/get_blogs", tags=["Blog"])
+async def get_blogs(username: Annotated[Authorization, Depends(Authentication.active_username)], data: GetBlogRequest, db: Session = Depends(get_session)):
+    return await BlogService.get_blogs(username, data, db)
