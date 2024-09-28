@@ -1,0 +1,26 @@
+# Third-Party Libraries and Licenses
+
+This project uses the following third-party libraries:
+
+1. **FastAPI** - Licensed under the MIT License
+   https://github.com/tiangolo/fastapi
+
+2. **Uvicorn** - Licensed under the BSD License
+   https://github.com/encode/uvicorn
+
+3. **SQLAlchemy** - Licensed under the MIT License
+   https://github.com/sqlalchemy/sqlalchemy
+
+4. **PyJWT** - Licensed under the MIT License
+   https://github.com/jpadilla/pyjwt
+
+5. **Passlib** - Licensed under the BSD License
+   https://bitbucket.org/ecollins/passlib
+
+6. **Pydantic** - Licensed under the MIT License
+   https://github.com/pydantic/pydantic
+
+7. **python-dotenv** - Licensed under the BSD License
+   https://github.com/theskumar/python-dotenv
+
+Please refer to the respective repositories for further details about their licenses.

@@ -1,15 +1,20 @@
+import os
+
 from datetime import datetime, timedelta, timezone
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from passlib.context import CryptContext
+from dotenv import load_dotenv
 
 from app.core.database import Session, get_session
 
 from app.models.user import User
 
-SECRET_KEY_FOR_TOKEN = "your_secret_key_here"
-TOKEN_ALGORITHM = "HS256"
+load_dotenv()
+
+SECRET_KEY_FOR_TOKEN = os.getenv("SECRET_KEY_FOR_TOKEN")
+TOKEN_ALGORITHM = os.getenv("TOKEN_ALGORITHM")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
